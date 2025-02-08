@@ -7,18 +7,6 @@ import Link from 'next/link';
 import styles from '@/app/css-modules/gamedetail.module.css';
 import formatDate from "@/app/lib/formatDate";
 import ShowImg from '../lib/showImg';
-import { StaticImageData } from 'next/image';
-
-// Import store icons
-import steamIcon from '../../../public/steam.svg';
-import xBoxIcon from '../../../public/xbox.svg';
-import playStationIcon from '../../../public/playstation.svg';
-import appStoreIcon from '../../../public/app-store.svg';
-import gogIcon from '../../../public/gog.svg';
-import nintendoIcon from '../../../public/nintendo.svg';
-import googlePlayIcon from '../../../public/google-play.svg';
-import itchIcon from '../../../public/itch-io.svg';
-import epicGamesIcon from '../../../public/epic-games.svg';
 
 // Define types
 interface Store {
@@ -81,19 +69,19 @@ interface GameDetailProps {
   recommendedGames: Game[];
 }
 
-const getStoreName = (storeID: number): { name: string; icon: StaticImageData } => {
-  const storeMap: Record<number, { name: string; icon: StaticImageData }> = {
-    1: { name: 'Steam', icon: steamIcon },
-    2: { name: 'Xbox Store', icon: xBoxIcon },
-    3: { name: 'PlayStation Store', icon: playStationIcon },
-    4: { name: 'App Store', icon: appStoreIcon },
-    5: { name: 'GOG', icon: gogIcon },
-    6: { name: 'Nintendo Store', icon: nintendoIcon },
-    7: { name: 'Xbox 360 Store', icon: xBoxIcon },
-    8: { name: 'Google Play', icon: googlePlayIcon },
-    9: { name: 'itch.io', icon: itchIcon },
+const getStoreName = (storeID: number): { name: string; icon: string } => {
+  const storeMap: Record<number, { name: string; icon: string }> = {
+    1: { name: 'Steam', icon: '/steam.svg' },
+    2: { name: 'Xbox Store', icon: '/xbox.svg' },
+    3: { name: 'PlayStation Store', icon: '/playstation.svg' },
+    4: { name: 'App Store', icon: '/app-store.svg' },
+    5: { name: 'GOG', icon: '/gog.svg' },
+    6: { name: 'Nintendo Store', icon: '/nintendo.svg' },
+    7: { name: 'Xbox 360 Store', icon: '/xbox.svg' },
+    8: { name: 'Google Play', icon: '/google-play.svg' },
+    9: { name: 'itch.io', icon: '/itch-io.svg' },
   };
-  return storeMap[storeID] || { name: 'Epic Games', icon: epicGamesIcon };
+  return storeMap[storeID] || { name: 'Epic Games', icon: '/epic-games.svg' };
 };
 
 const GameDetail = ({

@@ -26,6 +26,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Ghostly Gamers",
   description: "Ghostly Gamers is a platform to find games to play.",
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({

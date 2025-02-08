@@ -1,0 +1,17 @@
+.page {
+    min-height: 100vh;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+}
+.main {
+    flex: 1;
+    padding: 8rem 10% 5rem 10%;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 900px) {
+    .main {
+        padding: 8rem 5% 5rem 5%;
+    }
+}

@@ -1,0 +1,128 @@
+.footer {
+    background-color: var(--foreground);
+    width: 100%;
+    margin-top: auto;
+}
+
+.footerContent {
+    margin: 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.footerSection {
+    margin-bottom: 10px;
+}
+
+.footerSection h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 1rem;
+    transition: all .3s;
+    flex-direction: column;
+}
+
+.logoText {
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: #94dd26;
+}
+
+.footerLogo {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.3s ease;
+}
+
+.logoSection:hover .footerLogo {
+    transform: scale(1.1);
+}
+
+.ghostIcon {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.logoSection:hover, .ghostIcon:hover {
+    transform: translateY(-2px);
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--background);
+}
+
+.socialLinks a {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.socialLinks a:hover {
+    transform: translateY(-3px);
+    color: #94dd26;
+}
+
+.footerNav {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.footerNav a {
+    text-decoration: none;
+    color: var(--background);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footerNav a:hover {
+    color: #94dd26;
+    transform: translateY(-3px);
+}
+
+.bottomBar {
+    text-align: center;
+    font-family: var(--font-geist-mono);
+    font-size: 0.9rem;
+    color: var(--background);
+}
+
+.bottomBar p {
+    margin: 0.5rem 0;
+}
+.ghostP {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+.ghostSpan {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (max-width: 768px) {
+    .footerContent {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footerSection {
+        align-items: center;
+    }
+
+    .footerNav {
+        align-items: center;
+    }
+}

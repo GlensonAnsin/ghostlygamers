@@ -1,0 +1,299 @@
+.container {
+    margin: 0 15%;
+}
+.gameInfo1 {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    background-color: var(--gamecardcolor);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--gamecardborder);
+}
+.imageContainer {
+    width: 50%;
+}
+.mainImage {
+    border-radius: 8px;
+    width: 100%;
+    object-fit: cover;
+}
+.metadataContainer {
+    width: 50%;
+}
+.metadataContainer h1 {
+    margin-bottom: 20px;
+}
+.metadata {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 20px;
+    align-items: start;
+}
+.metadata dt {
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 10px;
+}
+.metadata dd {
+    margin: 0 0 10px 0;
+    color: var(--foreground);
+}
+.label {
+    width: 150px;
+}
+.label p, .value p{
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+.gameInfo2 {
+    padding: 20px;
+    background: var(--gamecardcolor);
+    border-radius: 8px;
+    box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--gamecardborder);
+    min-height: 20vh;
+}
+.gameInfo2 h2 {
+    margin-bottom: 20px;
+}
+.description {
+    line-height: 1.6;
+}
+.dlcImage {
+    width: 100%;
+    border-radius: 4px;
+}
+.similarGames, .recommendedGames {
+    margin-top: 2rem;
+}
+.similarGrid, .recommendedGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.similarCard, .recommendedCard {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+}
+.similarCard:hover, .recommendedCard:hover {
+    transform: translateY(-5px);
+}
+.similarImage, .recommendedImage {
+    width: 100%;
+    border-radius: 4px;
+}
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.tab {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    color: var(--foreground);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+.tab.active {
+    background: #94dd26;
+    color: #333333;
+    border-radius: 4px;
+}
+.mediaSection {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.trailer {
+    width: 100%;
+    max-width: 800px;
+    margin: 1rem 0;
+}
+.screenshotGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.screenshot:hover {
+    transform: scale(1.05);
+}
+.achievementsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+.achievement {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--gamedetail);
+    border-radius: 8px;
+}
+.dlcGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.dlcCard {
+    background: var(--gamedetail);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: transform 0.2s;
+}
+.dlcCard:hover {
+    transform: translateY(-5px);
+}
+.stores {
+    margin-top: 1rem;
+}
+
+.storeLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.storeLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5rem 1rem;
+    background: #94dd26;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.storeLink:hover {
+    transform: translateY(-2px);
+    background: #7ab520;
+}
+.noStores {
+    color: #666;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+.backButton {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    background: #94dd26;
+    color: #333333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.backButton:hover {
+    background: #7ab520;
+    transform: translateX(-5px);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+    .container {
+        margin: 0 10%;
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        margin: 0 5%;
+    }
+
+    .gameInfo1 {
+        flex-direction: column;
+    }
+
+    .imageContainer, .metadataContainer {
+        width: 100%;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tab {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .achievementsGrid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .achievement {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .achievement img {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .screenshotGrid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .dlcGrid, .similarGrid, .recommendedGrid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .storeLinks {
+        justify-content: center;
+    }
+
+    .storeLink {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .screenshotGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .metadata {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .metadata dd {
+        margin-bottom: 15px;
+    }
+
+    .metadata {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .label, .value {
+        width: 100%;
+    }
+
+    .value {
+        margin-bottom: 1rem;
+    }
+}

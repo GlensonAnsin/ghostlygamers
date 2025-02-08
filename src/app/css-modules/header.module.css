@@ -1,0 +1,205 @@
+.navbar {
+    background: var(--headerbg);
+    backdrop-filter: blur(10px);
+    margin: 0px 10%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 80%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.logoContainer {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    height: 80px;
+}
+.homeLink {
+    display: flex;
+    align-items: center;
+}
+.title {
+    font-weight: bold;
+    color: #94dd26;
+    font-size: 25px;
+}
+.navLinks {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.navLinks a {
+    text-decoration: none;
+    color: var(--foreground);
+    transition: color 0.3s;
+    white-space: nowrap;
+    font-size: 1rem;
+}
+.searchForm {
+    display: flex;
+    align-items: center;
+    margin: 0 20px 0 auto;
+    background: var(--searchbarbg);
+    padding: 8px;
+    height: 35px;
+    border-radius: 10px;
+    width: 250px;
+}
+.searchIcon {
+    margin-right: 8px;
+    color: var(--background);
+}
+.search {
+    border-radius: 4px;
+    background: var(--searchbarbg);
+    outline: none;
+    color: #333333;
+    width: 210px;
+    border: none;
+}
+.themeToggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--foreground);
+    font-size: 1.2rem;
+    padding: 8px;
+    margin: 0 16px;
+    transition: transform 0.2s;
+}
+.themeToggle:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile menu button */
+.menuButton {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--foreground);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Mobile menu */
+.mobileMenu {
+    background: var(--background);
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.mobileMenu.active {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+.mobileMenu a {
+    display: block;
+    padding: 1rem;
+    color: var(--foreground);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideIn 0.3s ease-in-out forwards;
+}
+
+.mobileMenu.active a {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobileMenu a:last-child {
+    border-bottom: none;
+}
+
+.mobileMenu a:hover {
+    background: rgba(148, 221, 38, 0.1);
+    padding-left: 1.5rem;
+    color: #94dd26;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animation delays for menu items */
+.mobileMenu a:nth-child(1) { animation-delay: 0.1s; }
+.mobileMenu a:nth-child(2) { animation-delay: 0.2s; }
+.mobileMenu a:nth-child(3) { animation-delay: 0.3s; }
+.mobileMenu a:nth-child(4) { animation-delay: 0.4s; }
+.mobileMenu a:nth-child(5) { animation-delay: 0.5s; }
+
+/* Responsive breakpoints */
+@media (max-width: 1360px) {
+    .menuButton {
+        display: block;
+    }
+    .navLinks {
+        display: none;
+    }
+    .title {
+        display: none;
+    }
+    .search {
+        width: 120px;
+    }
+    .logoContainer {
+        margin-right: 0;
+    }
+    .mobileMenu {
+        left: 10%;
+        right: 10%;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        margin: 0;
+        width: 100%;
+    }
+    .mobileMenu {
+        left: 0;
+        right: 0;
+    }
+}

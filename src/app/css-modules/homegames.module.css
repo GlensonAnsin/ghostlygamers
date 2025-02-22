@@ -5,10 +5,13 @@
     overflow: hidden;
     border-radius: 12px;
 }
-.slide {
-    position: relative;
+.swiper {
     width: 100%;
     height: 100%;
+  }
+.carouselImage {
+    object-fit: cover;
+    width: 100%;
 }
 .content {
     position: absolute;
@@ -116,5 +119,31 @@
 @media (max-width: 790px) {
     .gamesGrid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .gamesGrid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 435px) {
+    .gamesGrid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 368px) {
+    .gamesGrid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    .gameCard h2 {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+    .gameCard p {
+        font-size: 0.8rem;
+        padding: 0 0.5rem 0.5rem;
     }
 }

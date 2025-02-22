@@ -93,7 +93,7 @@ function TopGamesContent() {
         <div className={styles.page}>
             <Header />
             <Suspense>
-            <main className={styles.main}>
+            <main className={loading? styles.mainLoading : styles.main}>
                 {loading && (
                     <div className={styles.loading}>
                         <video autoPlay loop playsInline muted>

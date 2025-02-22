@@ -171,7 +171,7 @@
 .mobileMenu a:nth-child(5) { animation-delay: 0.5s; }
 
 /* Responsive breakpoints */
-@media (max-width: 1360px) {
+@media (max-width: 1380px) {
     .menuButton {
         display: block;
     }
@@ -201,5 +201,11 @@
     .mobileMenu {
         left: 0;
         right: 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .search {
+        width: 50px;
     }
 }

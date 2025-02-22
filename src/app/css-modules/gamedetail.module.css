@@ -160,14 +160,12 @@
 .stores {
     margin-top: 1rem;
 }
-
 .storeLinks {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 1rem;
 }
-
 .storeLink {
     display: inline-flex;
     align-items: center;
@@ -179,17 +177,18 @@
     border-radius: 4px;
     transition: transform 0.2s, background-color 0.2s;
 }
-
 .storeLink:hover {
     transform: translateY(-2px);
     background: #7ab520;
+}
+.storeIcon {
+    filter: brightness(0) invert(1) brightness(0.2);
 }
 .noStores {
     color: #666;
     font-style: italic;
     margin-top: 0.5rem;
 }
-
 .backButton {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
@@ -201,7 +200,6 @@
     font-size: 1rem;
     transition: background-color 0.2s, transform 0.2s;
 }
-
 .backButton:hover {
     background: #7ab520;
     transform: translateX(-5px);

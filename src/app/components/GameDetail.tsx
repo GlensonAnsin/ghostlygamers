@@ -7,6 +7,8 @@ import Link from 'next/link';
 import styles from '@/app/css-modules/gamedetail.module.css';
 import formatDate from "@/app/lib/formatDate";
 import ShowImg from '../lib/showImg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 // Define types
 interface Store {
@@ -115,7 +117,9 @@ const GameDetail = ({
                 onClick={() => router.back()} 
                 className={styles.backButton}
             >
-                ← Back
+                <FontAwesomeIcon icon={faArrowLeft} />
+                &nbsp;
+                Back
             </button>
             <div className={styles.gameInfo1}>
                 <div className={styles.imageContainer}>
@@ -164,6 +168,7 @@ const GameDetail = ({
                                             alt={storeInfo.name}
                                             width={20}
                                             height={20}
+                                            className={styles.storeIcon}
                                         />
                                     </Link>
                                 );

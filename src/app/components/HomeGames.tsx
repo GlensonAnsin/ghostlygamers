@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from "@/app/css-modules/homegames.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import formatDate from "@/app/lib/formatDate";
 
 interface Game {
@@ -32,7 +35,6 @@ const HomeGames = ({
   homeTopGames, 
   homeUpdatedGames 
 }: HomeGamesProps) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -44,21 +46,6 @@ const HomeGames = ({
       setIsLoading(false);
     }
   }, [carouselGames, homeTrendingGames, homeLatestGames, homeTopGames, homeUpdatedGames]);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % (carouselGames?.slice(0, 5).length || 1));
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [carouselGames]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % carouselGames.slice(0, 5).length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + carouselGames.slice(0, 5).length) % carouselGames.slice(0, 5).length);
-  };
 
   const renderGameCard = (game: Game) => (
     <Link href={`/games/${game.id}`} key={game.id} className={styles.gameCard}>
@@ -89,24 +76,37 @@ const HomeGames = ({
   return (
     <>
         <div className={styles.carousel}>
-            <button className={`${styles.arrow} ${styles.leftArrow}`} onClick={prevSlide}>
-                <FontAwesomeIcon icon={faChevronLeft} />
-            </button>
-            <div className={styles.slide}>
-                <Image
-                src={carouselGames[currentIndex]?.background_image || "/alternative_poster_1.png"}
-                alt={carouselGames[currentIndex]?.name || "Game"}
-                fill
-                priority
-                className={styles.carouselImage}
-                />
-                <div className={styles.content}>
-                <h2>{carouselGames[currentIndex]?.name}</h2>
-                </div>
-            </div>
-            <button className={`${styles.arrow} ${styles.rightArrow}`} onClick={nextSlide}>
-                <FontAwesomeIcon icon={faChevronRight} />
-            </button>
+          <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className={styles.swiper}
+          >
+            {carouselGames?.map((game: Game) => (
+              <SwiperSlide key={game.id}>
+                <Link href={`/games/${game.id}`}>
+                  <Image
+                    src={game.background_image || "/alternative_poster_1.png"}
+                    alt={game.name}
+                    fill
+                    priority
+                    className={styles.carouselImage}
+                  />
+                  <div className={styles.content}>
+                    <h2>{game.name}</h2>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
         <h2 className={styles.trending}>Trending Games</h2>
         <div className={styles.gamesGrid}>

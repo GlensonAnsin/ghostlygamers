@@ -10,7 +10,7 @@ interface ShowImgProps {
 const ShowImg = ({ imgLink, display, setDisplay }: ShowImgProps) => {
     return (
         <div className={!display ? styles.hideImage : styles.viewImage}>
-            <div className={styles.xShowCont}>
+            <div className={styles.showCont}>
                 <div className={styles.xBtnCont}>
                     <Image
                         onClick={() => setDisplay(!display)}
@@ -25,8 +25,15 @@ const ShowImg = ({ imgLink, display, setDisplay }: ShowImgProps) => {
                     <Image
                         src={imgLink || '/alternative_poster_1'}
                         alt="picture"
-                        width={1000}
-                        height={500}
+                        width={0}
+                        height={0}
+                        sizes="(max-width: 768px) 90vw, (max-width: 1200px) 80vw, 1000px"
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            maxHeight: '90vh',
+                            objectFit: 'contain',
+                        }}
                         className={styles.screenshot}
                     />
                 </div>

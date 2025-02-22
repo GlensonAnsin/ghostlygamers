@@ -92,7 +92,7 @@ function TrendingGamesContent() {
     return (
         <div className={styles.page}>
             <Header />
-            <main className={styles.main}>
+            <main className={loading? styles.mainLoading : styles.main}>
                 {loading && (
                     <div className={styles.loading}>
                         <video autoPlay loop playsInline muted>

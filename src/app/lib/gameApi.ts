@@ -8,7 +8,7 @@ interface Game {
     metacritic: number;
     playtime: number;
     rating: number;
-    genres: Array<{ name: string }>;
+    genres: Genre[];
     publishers: Array<{ name: string }>;
     platforms: Array<{ platform: { name: string } }>;
     tags: Array<{ id: number; name: string }>;
@@ -58,7 +58,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function fetchCarouselGames(): Promise<Game[]> {
     try {
-        const res = await fetch(`${BASE_URL}/lists/popular?key=${API_KEY}&page_size=5`);
+        const res = await fetch(`${BASE_URL}/lists/popular?key=${API_KEY}&page_size=10`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games for carousel.');
         const data: ApiResponse<Game> = await res.json();
         return data.results;
@@ -70,7 +70,7 @@ export async function fetchCarouselGames(): Promise<Game[]> {
 
 export async function fetchHomeTrendingGames(): Promise<Game[]> {
     try {
-        const res = await fetch(`${BASE_URL}/lists/popular?key=${API_KEY}&page_size=8`);
+        const res = await fetch(`${BASE_URL}/lists/popular?key=${API_KEY}&page_size=8`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return data.results;
@@ -87,7 +87,7 @@ export async function fetchHomeLatestGames(): Promise<Game[]> {
     const startDate = last6MonthDate.toISOString().split('T')[0];
     const endDate = currentDate.toISOString().split('T')[0];
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&dates=${startDate},${endDate}&ordering=-released&page_size=8`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&dates=${startDate},${endDate}&ordering=-released&page_size=8`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return data.results;
@@ -99,7 +99,7 @@ export async function fetchHomeLatestGames(): Promise<Game[]> {
 
 export async function fetchHomeTopGames(): Promise<Game[]> {
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&metacritic=90,100&ordering=-metacritic&page_size=8`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&metacritic=90,100&ordering=-metacritic&page_size=8`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return data.results;
@@ -116,7 +116,7 @@ export async function fetchHomeUpdatedGames(): Promise<Game[]> {
     const startDate = lastMonthDate.toISOString().split('T')[0];
     const endDate = currentDate.toISOString().split('T')[0];
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&updated=${startDate},${endDate}&ordering=-updated&page_size=8`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&updated=${startDate},${endDate}&ordering=-updated&page_size=8`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return data.results;
@@ -128,7 +128,7 @@ export async function fetchHomeUpdatedGames(): Promise<Game[]> {
 
 export async function fetchAllGames(page: number): Promise<PaginatedResponse<Game>> {
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&page=${page}&page_size=40`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&page=${page}&page_size=40`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return {
@@ -144,7 +144,7 @@ export async function fetchAllGames(page: number): Promise<PaginatedResponse<Gam
 
 export async function fetchAllTrendingGames(page: number): Promise<PaginatedResponse<Game>> {
     try {
-        const res = await fetch(`${BASE_URL}/lists/popular?key=${API_KEY}&page=${page}&page_size=40`);
+        const res = await fetch(`${BASE_URL}/lists/popular?key=${API_KEY}&page=${page}&page_size=40`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return {
@@ -165,7 +165,7 @@ export async function fetchAllLatestGames(page: number): Promise<PaginatedRespon
     const startDate = last6MonthDate.toISOString().split('T')[0];
     const endDate = currentDate.toISOString().split('T')[0];
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&dates=${startDate},${endDate}&ordering=-released&page=${page}&page_size=40`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&dates=${startDate},${endDate}&ordering=-released&page=${page}&page_size=40`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json(); 
 
@@ -182,7 +182,7 @@ export async function fetchAllLatestGames(page: number): Promise<PaginatedRespon
 
 export async function fetchAllTopGames(page: number): Promise<PaginatedResponse<Game>> {
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&metacritic=80,100&ordering=-metacritic&page=${page}&page_size=40`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&metacritic=80,100&ordering=-metacritic&page=${page}&page_size=40`, { cache: 'no-store' });
         if (!res.ok) throw new Error(`Failed to fetch games`);
         const data: ApiResponse<Game> = await res.json();
         return {
@@ -203,7 +203,7 @@ export async function fetchAllUpdatedGames(page: number): Promise<PaginatedRespo
     const startDate = lastMonthDate.toISOString().split('T')[0];
     const endDate = currentDate.toISOString().split('T')[0];
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&updated=${startDate},${endDate}&ordering=-updated&page=${page}&page_size=40`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&updated=${startDate},${endDate}&ordering=-updated&page=${page}&page_size=40`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return {
@@ -219,7 +219,7 @@ export async function fetchAllUpdatedGames(page: number): Promise<PaginatedRespo
 
 export async function fetchGameDetails(gameId: string): Promise<Game | null> {
     try {
-        const res = await fetch(`${BASE_URL}/${gameId}?key=${API_KEY}`);
+        const res = await fetch(`${BASE_URL}/${gameId}?key=${API_KEY}`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch game details');
         const data: Game = await res.json();
         return data;
@@ -231,7 +231,7 @@ export async function fetchGameDetails(gameId: string): Promise<Game | null> {
 
 export async function fetchSimilarGames(gameId: string): Promise<Game[]> {
     try {
-        const res = await fetch(`${BASE_URL}/${gameId}/game-series?key=${API_KEY}`);
+        const res = await fetch(`${BASE_URL}/${gameId}/game-series?key=${API_KEY}`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch similar games');
         const data: ApiResponse<Game> = await res.json();
         return data.results;
@@ -243,7 +243,7 @@ export async function fetchSimilarGames(gameId: string): Promise<Game[]> {
 
 export async function fetchGameTrailers(gameId: string): Promise<GameTrailer[]> {
     try {
-        const res = await fetch(`${BASE_URL}/${gameId}/movies?key=${API_KEY}`);
+        const res = await fetch(`${BASE_URL}/${gameId}/movies?key=${API_KEY}`, { cache: 'no-store' });
         if (!res.ok) {
             if (res.status === 404) return [];
             throw new Error(`Failed to fetch game trailers: ${res.status}`);
@@ -262,7 +262,7 @@ export async function fetchGameTrailers(gameId: string): Promise<GameTrailer[]> 
 
 export async function fetchGameScreenshots(gameId: string): Promise<GameScreenshot[]> {
     try {
-        const res = await fetch(`${BASE_URL}/${gameId}/screenshots?key=${API_KEY}`);
+        const res = await fetch(`${BASE_URL}/${gameId}/screenshots?key=${API_KEY}`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch game screenshots');
         const data: ApiResponse<GameScreenshot> = await res.json();
         return data.results;
@@ -274,7 +274,7 @@ export async function fetchGameScreenshots(gameId: string): Promise<GameScreensh
 
 export async function fetchGameAchievements(gameId: string): Promise<GameAchievement[]> {
     try {
-        const res = await fetch(`${BASE_URL}/${gameId}/achievements?key=${API_KEY}`);
+        const res = await fetch(`${BASE_URL}/${gameId}/achievements?key=${API_KEY}`, { cache: 'no-store' });
         if (!res.ok) {
             if (res.status === 404) return [];
             throw new Error(`Failed to fetch game achievements: ${res.status}`);
@@ -292,7 +292,7 @@ export async function fetchGameAchievements(gameId: string): Promise<GameAchieve
 
 export async function fetchGameDLC(gameId: string): Promise<Game[]> {
     try {
-        const res = await fetch(`${BASE_URL}/${gameId}/additions?key=${API_KEY}`);
+        const res = await fetch(`${BASE_URL}/${gameId}/additions?key=${API_KEY}`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch game DLC');
         const data: ApiResponse<Game> = await res.json();
         return data.results;
@@ -304,7 +304,7 @@ export async function fetchGameDLC(gameId: string): Promise<Game[]> {
 
 export async function fetchSearchedGames(query: string, page: number): Promise<PaginatedResponse<Game>> {
     try {
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&search=${query}&page=${page}&page_size=40`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&search=${query}&page=${page}&page_size=40`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch games');
         const data: ApiResponse<Game> = await res.json();
         return {
@@ -320,7 +320,7 @@ export async function fetchSearchedGames(query: string, page: number): Promise<P
 
 export async function fetchGameStores(gameId: string): Promise<GameStore[]> {
     try {
-        const res = await fetch(`${BASE_URL}/${gameId}/stores?key=${API_KEY}`);
+        const res = await fetch(`${BASE_URL}/${gameId}/stores?key=${API_KEY}`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch game stores');
         const data: ApiResponse<GameStore> = await res.json();
         return data.results;
@@ -330,7 +330,7 @@ export async function fetchGameStores(gameId: string): Promise<GameStore[]> {
     }
 }
 
-interface Tag {
+interface Genre {
     id: number;
     name: string;
 }
@@ -338,16 +338,18 @@ interface Tag {
 export async function fetchRecommendedGames(gameId: string): Promise<Game[]> {
     try {
         const gameDetails = await fetchGameDetails(gameId);
-        if (!gameDetails || !gameDetails.tags || gameDetails.tags.length === 0) {
+        if (!gameDetails || !gameDetails.genres || gameDetails.genres.length === 0) {
             return [];
         }
 
-        const tags = gameDetails.tags
+        const genres = gameDetails.genres
             .slice(0, 3)
-            .map((tag: Tag) => tag.id)
+            .map((genre: Genre) => genre.id)
             .join(',');
+
+        console.log(genres);
             
-        const res = await fetch(`${BASE_URL}?key=${API_KEY}&tags=${tags}&exclude=${gameId}&ordering=-rating&page_size=12`);
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&genres=${genres}&exclude=${gameId}&page_size=12`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch recommended games');
         const data: ApiResponse<Game> = await res.json();
         return data.results;

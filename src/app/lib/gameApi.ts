@@ -358,3 +358,35 @@ export async function fetchRecommendedGames(gameId: string): Promise<Game[]> {
         return [];
     }
 }
+
+export async function fetchSortedGamesByGenre(genreId: number, page: number): Promise<PaginatedResponse<Game>> {
+    try {
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&genres=${genreId}&page=${page}&page_size=40`, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch games');
+        const data: ApiResponse<Game> = await res.json();
+        return {
+            results: data.results,
+            count: data.count,
+            totalPages: Math.ceil(data.count / 40)
+        };
+    } catch (error) {
+        console.error('Error fetching games:', error);
+        return { results: [], count: 0, totalPages: 0 };
+    }
+}
+
+export async function fetchSortedGamesByPlatform(platformId: number, page: number): Promise<PaginatedResponse<Game>> {
+    try {
+        const res = await fetch(`${BASE_URL}?key=${API_KEY}&platforms=${platformId}&page=${page}&page_size=40`, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch games');
+        const data: ApiResponse<Game> = await res.json();
+        return {
+            results: data.results,
+            count: data.count,
+            totalPages: Math.ceil(data.count / 40)
+        };
+    } catch (error) {
+        console.error('Error fetching games:', error);
+        return { results: [], count: 0, totalPages: 0 };
+    }
+}

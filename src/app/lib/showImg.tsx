@@ -31,7 +31,7 @@ const ShowImg = ({ imgLink, display, setDisplay }: ShowImgProps) => {
                         style={{
                             width: '100%',
                             height: 'auto',
-                            maxHeight: '90vh',
+                            maxHeight: '660px',
                             objectFit: 'contain',
                         }}
                         className={styles.screenshot}

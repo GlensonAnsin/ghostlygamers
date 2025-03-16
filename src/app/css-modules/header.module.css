@@ -39,8 +39,60 @@
     color: var(--foreground);
     transition: color 0.3s;
     white-space: nowrap;
-    font-size: 1rem;
+    font-size: 16px;
 }
+.genreDropdown .dropbtn, .platformDropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: var(--foreground);
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+}
+.genreDropdownContent {
+    display: none;
+    grid-template-columns: repeat(2, 141px);
+    position: absolute;
+    background-color: var(--gamecardcolor);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    transform: translateY(27px);
+    animation: dropdownSlideDown 0.3s ease-in-out;
+}
+.platformDropdownContent {
+    display: none;
+    grid-template-columns: repeat(2, 200px);
+    overflow-y: scroll;
+    height: 500px;
+    position: absolute;
+    background-color: var(--gamecardcolor);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    transform: translateY(27px);
+    animation: dropdownSlideDown 0.3s ease-in-out;
+}
+.genreDropdownContent a, .platformDropdownContent a {
+    float: none;
+    color: var(--foreground);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.navLinks a:hover, .dropbtn:hover {
+    color: #94dd26;
+}
+.show {
+    display: grid;
+  }
 .searchForm {
     display: flex;
     align-items: center;
@@ -49,7 +101,6 @@
     padding: 8px;
     height: 35px;
     border-radius: 10px;
-    width: 250px;
 }
 .searchIcon {
     margin-right: 8px;
@@ -106,14 +157,12 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
 .mobileMenu.active {
     display: block;
     transform: translateY(0);
     opacity: 1;
     animation: slideDown 0.3s ease-in-out;
 }
-
 .mobileMenu a {
     display: block;
     padding: 1rem;
@@ -124,20 +173,51 @@
     opacity: 0;
     animation: slideIn 0.3s ease-in-out forwards;
 }
-
 .mobileMenu.active a {
     opacity: 1;
     transform: translateX(0);
 }
-
 .mobileMenu a:last-child {
     border-bottom: none;
 }
-
 .mobileMenu a:hover {
     background: rgba(148, 221, 38, 0.1);
     padding-left: 1.5rem;
     color: #94dd26;
+}
+
+/* Mobile dropdowns */
+.mobileDropdownContainer {
+    width: 100%;
+}
+.mobileDropbtn {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background: none;
+    border: none;
+    color: var(--foreground);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mobileDropbtn:hover {
+    background: rgba(148, 221, 38, 0.1);
+    color: #94dd26;
+}
+.mobileDropdownContent {
+    display: none;
+    background: rgba(0, 0, 0, 0.1);
+}
+.mobileDropdownContent.show {
+    display: block;
+    height: 250px;
+    overflow-y: scroll;
+}
+.mobileDropdownContent a {
+    padding-left: 2rem !important;
 }
 
 /* Animations */
@@ -163,22 +243,32 @@
     }
 }
 
-/* Animation delays for menu items */
-.mobileMenu a:nth-child(1) { animation-delay: 0.1s; }
-.mobileMenu a:nth-child(2) { animation-delay: 0.2s; }
-.mobileMenu a:nth-child(3) { animation-delay: 0.3s; }
-.mobileMenu a:nth-child(4) { animation-delay: 0.4s; }
-.mobileMenu a:nth-child(5) { animation-delay: 0.5s; }
+@keyframes dropdownSlideDown {
+    from {
+        transform: translateY(-6px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(27px);
+        opacity: 1;
+    }
+}
 
 /* Responsive breakpoints */
-@media (max-width: 1380px) {
+@media (max-width: 1640px) {
+    .title {
+        font-size: 20px;
+    }
+    .navLinks a, .navLinks .genreDropdown .dropbtn, .navLinks .platformDropdown .dropbtn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1520px) {
     .menuButton {
         display: block;
     }
     .navLinks {
-        display: none;
-    }
-    .title {
         display: none;
     }
     .search {
@@ -204,8 +294,26 @@
     }
 }
 
+@media (max-width: 570px) {
+    .title {
+        display: none;
+    }
+}
+
 @media (max-width: 380px) {
     .search {
-        width: 50px;
+        width: 100px;
+    }
+}
+
+@media (max-width: 360px) {
+    .search {
+        width: 80px;
+    }
+}
+
+@media (max-width: 340px) {
+    .search {
+        width: 60px;
     }
 }
